@@ -1,67 +1,67 @@
 function arrayFunction() {
   
   // create new array like this
-  var newArray = [];
+  let newArray = [];
   
   // ordering of items is important
-  var fruitsArray = ['Apple','Banana','Pear','Strawberry'];
+  let fruitsArray = ['Apple','Banana','Pear','Strawberry'];
   
-  //Logger.log(fruitsArray); // [Apple, Banana, Pear, Strawberry]
+  //console.log(fruitsArray); // [Apple, Banana, Pear, Strawberry]
   
   // array index starts at 0
   // access items in array with this notation:
-  //Logger.log(fruitsArray[0]); // Apple 
-  //Logger.log(fruitsArray[1]); // Banana
-  //Logger.log(fruitsArray[2]); // Pear
-  //Logger.log(fruitsArray[3]); // Strawberry
-  //Logger.log(fruitsArray[4]); // undefined, nothing at position 4
+  //console.log(fruitsArray[0]); // Apple 
+  //console.log(fruitsArray[1]); // Banana
+  //console.log(fruitsArray[2]); // Pear
+  //console.log(fruitsArray[3]); // Strawberry
+  //console.log(fruitsArray[4]); // undefined, nothing at position 4
   
   // can also write arrays like this:
-  var anotherArray = ["first",
+  let anotherArray = ["first",
                       "second",
                       "third",
                       "fourth"];
   
-  //Logger.log(anotherArray);
+  //console.log(anotherArray);
   
   /*
   Array Methods
   */
   
-  var newArray = ['two','three','four'];
-  Logger.log("Starting array:");
-  Logger.log(newArray);
+  let countingArray = ['two','three','four'];
+  console.log("Starting array:");
+  console.log(countingArray);
   
   // add item to array
   
   // add to end
-  newArray.push('a hundred');
-  Logger.log(newArray);
+  countingArray.push('a hundred');
+  console.log(countingArray);
   
   // add to start
-  newArray.unshift('one');
-  Logger.log(newArray);
+  countingArray.unshift('one');
+  console.log(countingArray);
   
   // add to middle
-  newArray.splice(2,0,'miss a few');
-  Logger.log(newArray);
+  countingArray.splice(2,0,'miss a few');
+  console.log(countingArray);
   
-  newArray.splice(3,0,'ninety nine');
-  Logger.log(newArray);
+  countingArray.splice(3,0,'ninety nine');
+  console.log(countingArray);
   
   // removing items from array
   
   // remove from end
-  //newArray.pop();
-  //Logger.log(newArray);
+  //countingArray.pop();
+  //console.log(countingArray);
   
   // remove from beginning
-  //newArray.shift();
-  //Logger.log(newArray);
+  //countingArray.shift();
+  //console.log(countingArray);
   
   // remove from middle
-  newArray.splice(4,2);
-  Logger.log(newArray);
+  countingArray.splice(4,2);
+  console.log(countingArray);
  
 }
 
