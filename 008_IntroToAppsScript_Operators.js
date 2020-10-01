@@ -40,6 +40,12 @@ function stringOperators() {
   let fullName = string3 + " & " + string1 + " " + string2;
   console.log(fullName);
   
+  // multi-line strings with backtick marker
+  let multiLineString = `This is a multi-line string
+in Apps Script, which is handy for those long paragraphs.`;
+
+  console.log(multiLineString);
+  
 }
 
 
