@@ -112,4 +112,9 @@ function myPrice() {
 // console.log(price);
 
 
+// default parameters
+const defaultParamFunc = (a = 10, b = 2) => a * b;
+console.log(defaultParamFunc(4,3)); // 12
+console.log(defaultParamFunc()); // 20 becuase it uses the default parameters
+
 
