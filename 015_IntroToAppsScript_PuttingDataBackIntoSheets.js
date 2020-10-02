@@ -17,8 +17,8 @@ function getData1() {
   // just that the variable identifier cannot be reassigned.
   const ss = SpreadsheetApp.getActive();
   const sheet = ss.getActiveSheet();
-  let data = sheet.getDataRange();
-  let values = data.getValues();
+  const data = sheet.getDataRange();
+  const values = data.getValues();
   
   console.log(values);
   
@@ -65,7 +65,7 @@ function getData4() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet1 = ss.getSheetByName("Sheet1");
   
-  let activeRange = sheet1.getActiveRange().getValues();
+  const activeRange = sheet1.getActiveRange().getValues();
   
   console.log(activeRange);
   
@@ -81,7 +81,7 @@ function getData5() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet1 = ss.getSheetByName("Sheet1");
 
-  let data = sheet1.getRange("A1:C4").getValues();
+  const data = sheet1.getRange("A1:C4").getValues();
   
   console.log(data);
   
@@ -96,15 +96,17 @@ function getData6() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet1 = ss.getSheetByName("Sheet1");
   
-  let data = sheet1.getRange(1,1,4,1).getValues();
+  const data = sheet1.getRange(1,1,4,1).getValues();
   
   console.log(data); // [[Fruit], [Apple], [Banana], [Pear]]
   
-  let data2 = sheet1.getRange(3,1,4,3).getValues();
+  const data2 = sheet1.getRange(3,1,4,3).getValues();
   
   console.log(data2); //[[Banana, 0.82, 2.0], [Pear, 0.52, 7.0], [Watermelon, 1.74, 2.0], [Kiwi, 0.99, 3.0]]
 
 }
+
+
 
 
 
@@ -117,7 +119,7 @@ function calculateRowTotal() {
   const ss = SpreadsheetApp.getActive();
   const sheet1 = ss.getSheetByName("Sheet1");
   
-  let data = sheet1.getRange(2,1,6,3).getValues();
+  const data = sheet1.getRange(2,1,6,3).getValues();
   
   //console.log(data);
   
@@ -129,9 +131,9 @@ function calculateRowTotal() {
     //console.log(row[1]);
     //console.log(row[2]);
     
-    let name = row[0];
-    let cost = row[1];
-    let quantity = row[2];
+    const name = row[0];
+    const cost = row[1];
+    const quantity = row[2];
     
     const total = cost * quantity;
     
@@ -152,17 +154,17 @@ function addRowTotals() {
   const sheet1 = ss.getSheetByName("Sheet1");
   const lastRow = sheet1.getLastRow();
   
-  let data = sheet1.getRange(2,1,lastRow - 1,3).getValues();
+  const data = sheet1.getRange(2,1,lastRow - 1,3).getValues();
 
   console.log(data); 
   
-  let totalsArray = [];
+  const totalsArray = [];
   
   data.forEach(function(row) {
     
-    let name = row[0];
-    let cost = row[1];
-    let quantity = row[2];
+    const name = row[0];
+    const cost = row[1];
+    const quantity = row[2];
     
     const total = cost * quantity;
     
@@ -182,7 +184,7 @@ function addRowTotals() {
 }
 
 
-/************************************************************************************************************/
+
 
 
 
