@@ -1,7 +1,7 @@
 function mathOperators() {
   
-  let a = 10;
-  let b = 2;
+  const a = 10;
+  const b = 2;
   
   // standard operators + - * /
   console.log(a + b);
@@ -10,10 +10,11 @@ function mathOperators() {
   console.log(a / b);
   
   // Raise to power of 
-  let c = Math.pow(a,b);
+  const c = Math.pow(a,b);
   console.log(c);
   
-  let i = 0;
+  // need to use let in this next example because of reassignment by the i++ and i--
+  let i = 0; 
   console.log(i);
   
   // increment by 1
@@ -32,27 +33,27 @@ function stringOperators() {
   // can use single or double quotes around strings
   // BUT MUST BE CONSISTENT WITHIN LINE
   
-  let string1 = "Sarah";  // ok
-  let string2 = 'Smith';  // ok
-  let string3 = 'John'; // not ok
+  const string1 = "Sarah";  // ok
+  const string2 = 'Smith';  // ok
+  const string3 = 'John'; // not ok
   
   // concatenate strings with the plus sign +
-  let fullName = string3 + " & " + string1 + " " + string2;
+  const fullName = string3 + " & " + string1 + " " + string2;
   console.log(fullName);
   
   // multi-line strings with backtick marker
-  let multiLineString = `This is a multi-line string
+  const multiLineString = `This is a multi-line string
 in Apps Script, which is handy for those long paragraphs.`;
 
   console.log(multiLineString);
-  
+
 }
 
 
 function comparisonOperators() {
   
-  let a = 10;
-  let b = '10';
+  const a = 10;
+  const b = '10';
   
   console.log(a);
   console.log(typeof a);
@@ -74,8 +75,8 @@ function comparisonOperators() {
   // true becuase the type is not equal
   
   // Greater than, less than operators
-  let c = 50;
-  let d = 100;
+  const c = 50;
+  const d = 100;
   
   console.log(c > d);
   console.log(c >= d);
