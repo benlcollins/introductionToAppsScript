@@ -41,7 +41,7 @@ const addFunctionArrow = (firstNum,secondNum) => firstNum + secondNum;
 
 // this is globally declared so runs whenever we run any function from our menu
 // console.log(addFunction(3,4));
-
+// console.log(addFunctionArrow(3,4));
 
 // call a function from within another function
 function runOtherFunction() {
@@ -70,7 +70,7 @@ const multArrow = (a,b) => a * b;
 
 
 // another example - power function
-var power = function(a,b) {
+const power = function(a,b) {
   return Math.pow(a,b);
 }
 
@@ -82,39 +82,23 @@ const powerArrow = (a,b) => Math.pow(a,b);
 function superFunc(functionArgument, a, b) {
   return functionArgument(a,b); 
 }
-
-// arrow version
-const superFuncArrow = (func,a,b) => func(a,b);
-
 // console.log(superFunc(power,2,3)); // 8.0
 // console.log(superFunc(mult,2,3)); // 6.0
 // console.log(superFunc(addFunction,2,3));  // 5.0
 
+// arrow version
+const superFuncArrow = (func,a,b) => func(a,b);
 
-// Local variables
-
-// code here can NOT use price
-// console.log(price);
-
-function myPrice() {
-  
-  // code here CAN use price
-  let price = 9.99;
-  console.log(price);
-  
-  // Local variables are created when a function starts
-  // Local variables are deleted when the function is completed
-  
-  
-}
-
-// code here can NOT use price
-// console.log(price);
+// console.log(superFuncArrow(power,2,3)); // 8.0
+// console.log(superFuncArrow(mult,2,3)); // 6.0
+// console.log(superFuncArrow(addFunction,2,3));  // 5.0
 
 
 // default parameters
 const defaultParamFunc = (a = 10, b = 2) => a * b;
 console.log(defaultParamFunc(4,3)); // 12
 console.log(defaultParamFunc()); // 20 becuase it uses the default parameters
+
+
 
 
