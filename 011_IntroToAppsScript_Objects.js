@@ -2,12 +2,12 @@
 function objectFunction() {
   
   // create with curly brackets
-  let newObj = {};
+  const newObj = {};
   
   // objects consist of key/value pairs
   // ordering is not important
   // often have line breaks to make easier to read
-  let employee = {
+  const employee = {
     name: 'Joe Bloggs',
     age: 25,
     title: 'Data Analyst'
