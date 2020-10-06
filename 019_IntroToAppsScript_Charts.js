@@ -271,7 +271,7 @@ function addChart() {
   
   
   /*
-  let dataRange = sheet1.getRange("A1:B9");
+  const dataRange = sheet1.getRange("A1:B9");
   
   console.log(dataRange.getValues());
   

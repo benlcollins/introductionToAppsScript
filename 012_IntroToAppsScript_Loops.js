@@ -1,11 +1,11 @@
 // for loop
 function forLoop() {
   
-  var fruitsArray = ['Apple','Banana','Pear','Strawberry'];
+  const fruitsArray = ['Apple','Banana','Pear','Strawberry'];
   console.log(fruitsArray);
   console.log(fruitsArray.length); // 4
   
-  for (var i = 0; i < fruitsArray.length; i++) {
+  for (let i = 0; i < fruitsArray.length; i++) {
     
     console.log(i);
     console.log(fruitsArray[i]);
@@ -15,9 +15,9 @@ function forLoop() {
 
 
 // forEach loop
-function forEachLoop() {
+function forEachLoopExample1() {
   
-  let numberArray = ['one', 'two', 'three', 'four'];
+  const numberArray = ['one', 'two', 'three', 'four'];
   
   numberArray.forEach(function(item,i) {
     
@@ -31,16 +31,16 @@ function forEachLoop() {
 
 // second forEach loop example
 // call a function inside loop
-function forEachLoopTemp() {
+function forEachLoopExample2() {
   
-  let celciusArray = [0,13,19,11,24,29,34,17,4];
+  const celciusArray = [0,13,19,11,24,29,34,17,4];
   
-  let farenheitArray = [];
+  const farenheitArray = [];
   
   celciusArray.forEach(function(celciusTemp) {
     
     // call function here
-    let farenheitTemp = convertCtoF(celciusTemp);
+    const farenheitTemp = convertCtoF(celciusTemp);
     //console.log(farenheitTemp);
     
     farenheitArray.push(farenheitTemp);
@@ -68,9 +68,9 @@ const convertCtoF = (t) => (t * 9/5) + 32;
 
 // forEach does not work for objects
 // gives error
-function forEachObjectTest() {
+function forEachLoopExample3() {
   
-  let employee = {
+  const employee = {
     name: "Joe Bloggs",
     age: 25,
     title: "Data Analyst"
@@ -86,13 +86,13 @@ function forEachObjectTest() {
 // instead, use a for...in loop with objects
 function forInObjectLoop() {
   
-  var employee = {
+  const employee = {
     name: "Joe Bloggs",
     age: 25,
     title: "Data Analyst"
   }
   
-  for (var property in employee) {
+  for (const property in employee) {
     
     // log the key
     console.log(property); // e.g. name
@@ -102,7 +102,5 @@ function forInObjectLoop() {
         
   }  
 }
-
-
 
 
