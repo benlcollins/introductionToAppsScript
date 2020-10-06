@@ -1,10 +1,10 @@
 function arrayFunction() {
   
   // create new array like this
-  let newArray = [];
+  const newArray = [];
   
   // ordering of items is important
-  let fruitsArray = ['Apple','Banana','Pear','Strawberry'];
+  const fruitsArray = ['Apple','Banana','Pear','Strawberry'];
   
   //console.log(fruitsArray); // [Apple, Banana, Pear, Strawberry]
   
@@ -17,7 +17,7 @@ function arrayFunction() {
   //console.log(fruitsArray[4]); // undefined, nothing at position 4
   
   // can also write arrays like this:
-  let anotherArray = ["first",
+  const anotherArray = ["first",
                       "second",
                       "third",
                       "fourth"];
@@ -28,14 +28,14 @@ function arrayFunction() {
   Array Methods
   */
   
-  let countingArray = ['two','three','four'];
+  const countingArray = ['two','three','four'];
   console.log("Starting array:");
   console.log(countingArray);
   
   // add item to array
   
   // add to end
-  countingArray.push('a hundred');
+  countingArray.push('one hundred');
   console.log(countingArray);
   
   // add to start
