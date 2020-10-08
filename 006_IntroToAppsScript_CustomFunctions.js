@@ -1,54 +1,30 @@
-/**
- * 
- * Standard function declaration
- * 
- */
 function addOne(x) {
-  var answer = x + 1;
+  const answer = x + 1;
   return answer;
 }
 
-function multByTwo(x) {
+const addOneArrow = x => x + 1;
+
+function double(x) {
   return x * 2;
 }
 
-function multByX(a, X) {  
-  return a * X; 
+function multByX(x,c) {
+  return x * c;
 }
 
+
+
 /**
- * Function to calculate percent change
- *
- * @param {number} oldVal Original Value
- * @param {number} newVal New Value
- * @return The percent change between new and old values.
+ * Function to calculate percentage change
+ * 
+ * @param {number} oldVal Original value
+ * @param {number} newVal New value
+ * @return The percent change from old value to the new value
  * @customfunction
  */
-function percentChange(oldVal, newVal) {
-  return (newVal - oldVal) / oldVal; 
+function percentChange(oldVal,newVal) {
+
+  return (newVal - oldVal) / oldVal;
+
 }
-
-/**
- * 
- * Modern arrow function declaration
- * 
- */
-const addOneArrow = x => x + 1;
-
-const multByTwoArrow = x => x * 2;
-
-const multByXArrow = (a,X) => a * X;
-
-/**
- * Function to calculate percent change
- *
- * @param {number} oldVal Original Value
- * @param {number} newVal New Value
- * @return The percent change between new and old values.
- * @customfunction
- */
-const percentChangeArrow = (oldVal, newVal) => (newVal - oldVal) / oldVal;
-
-
-
-
