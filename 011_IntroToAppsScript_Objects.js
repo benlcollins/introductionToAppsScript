@@ -21,7 +21,11 @@ function objectFunction() {
   console.log(employee.title);
   
   // add item to object
+  employee.favoriteFood = 'Fish & Chips';
   employee['department'] = 'Web Analytics';
+
+  // or update values
+  employee.age = 26;
   
   console.log(employee);
   
@@ -29,6 +33,5 @@ function objectFunction() {
   delete employee.age;
   
   console.log(employee);
-  
   
 }
