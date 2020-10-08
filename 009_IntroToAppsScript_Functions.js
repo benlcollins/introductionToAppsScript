@@ -5,100 +5,61 @@
 function functionName(argument1, argument2, argument3) {
   
   //code to be executed when function is called (or invoked)
-  // argument1, arguemnt2, argument3 are available to do stuff with inside the function
+
+  // argument1, arguemnt2, argument3 are available 
+  // to do stuff with inside the function
+
   // return clause tells function what "answer" to return
-  return argument1 + argument2 + argument3;
+  return someAnswer;
 
 }
-
-// arrow function declaration syntax
-const functionNameArrow = (argument1, argument2, argument3) => (argument1 + argument2 + argument3);
 
 
 // basic function
 function firstFunction() {
-  console.log('Hello world!');
-}
-// arrow version
-const firstFunctionArrow = () => console.log('Hello world!');
-
-
-
-// can pass multiple variables into function
-// this function adds together two numbers
-function addFunction(firstNum, secondNum) {
-  
-  // Functions often compute a return value. 
-  // The return value is "returned" back to the "caller"
-  // When JavaScript reaches a return statement, the function will stop executing
-  return firstNum + secondNum; 
-  
+  console.log('Hello World!');
 }
 
-// arrow version
-const addFunctionArrow = (firstNum,secondNum) => firstNum + secondNum;
+// arrow function syntax
+const firstFunctionArrow = () => console.log('Hello World!');
 
+// pass parameters into functions
+function addFunction(num1,num2) {
+  return num1 + num2;
+}
 
-// this is globally declared so runs whenever we run any function from our menu
-// console.log(addFunction(3,4));
-// console.log(addFunctionArrow(3,4));
+// arrow
+const addFunctionArrow = (num1,num2) => num1 + num2;
 
-// call a function from within another function
+// in global space
+//console.log(addFunction(2,3));
+//console.log(addFunctionArrow(2,3));
+
+// call another function
 function runOtherFunction() {
-  
-  // If the function was invoked from a statement, 
-  // JavaScript will "return" to execute the code after the invoking statement
-  let answer = addFunction(100,93);
-  
+  const answer = addFunction(100,93);
   console.log(answer);
-  
 }
 
+// assigning functions to variables
+const multFunction =  (a,b) => a * b;
 
-// can assign a function to a variable
-var mult = function(a,b) {
-  return a * b;
-}
+//console.log(multFunction);
+//Logger.log(multFunction);
+//console.log(multFunction(5,10));
 
-// arrow version
-const multArrow = (a,b) => a * b;
+// pass functions as arguments to other functions
+const superFunction = (fn, a, b) => fn(a,b);
 
-
-// log the variable with the function in
-// console.log(mult);
-// console.log(mult(5,10));
-
-
-// another example - power function
-const power = function(a,b) {
-  return Math.pow(a,b);
-}
-
-// arrow version
-const powerArrow = (a,b) => Math.pow(a,b);
-
-
-// free to pass functions as arguments to other functions!
-function superFunc(functionArgument, a, b) {
-  return functionArgument(a,b); 
-}
-// console.log(superFunc(power,2,3)); // 8.0
-// console.log(superFunc(mult,2,3)); // 6.0
-// console.log(superFunc(addFunction,2,3));  // 5.0
-
-// arrow version
-const superFuncArrow = (func,a,b) => func(a,b);
-
-// console.log(superFuncArrow(power,2,3)); // 8.0
-// console.log(superFuncArrow(mult,2,3)); // 6.0
-// console.log(superFuncArrow(addFunction,2,3));  // 5.0
-
+//console.log(superFunction(multFunction,2,5));
 
 // default parameters
-const defaultParamFunc = (a = 10, b = 2) => a * b;
-console.log(defaultParamFunc(4,3)); // 12
-console.log(defaultParamFunc()); // 20 becuase it uses the default parameters
+function defaultParamFunction(a = 100, b = 10) {
+  return a / b;
+}
 
+const defaultParamFunctionArrow = (a = 100, b = 10) => a / b;
 
+console.log(defaultParamFunctionArrow()); 
 
 
