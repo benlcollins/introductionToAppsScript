@@ -1,108 +1,75 @@
-// get Name of spreadsheet
+// get name of our sheet
 function getName() {
-  
   const ss = SpreadsheetApp.getActive();
   const name = ss.getName();
-  
   console.log(name);
-  
 }
 
-
-// get data out of spreadsheet
+// get data out of Sheet
 function getData1() {
-  
-  // The const declaration creates a read-only reference to a value. 
-  // It does not mean the value it holds is immutable
-  // just that the variable identifier cannot be reassigned.
   const ss = SpreadsheetApp.getActive();
   const sheet = ss.getActiveSheet();
   const data = sheet.getDataRange();
   const values = data.getValues();
-  
   console.log(values);
-  
-  /** 
-  
-  [
-  [Fruit, Cost, Quantity], 
-  [Apple, 0.86, 4.0], 
-  [Banana, 0.82, 2.0], 
-  [Pear, 0.52, 7.0], 
-  [Watermelon, 1.74, 2.0], 
-  [Kiwi, 0.99, 3.0], 
-  [Strawberry, 0.4, 25.0]
-  ]
-  
-  */
-  
 }
 
+/*
 
-// get data out more directly
+  [ 
+    [ 'Fruit', 'Cost', 'Quantity' ],
+    [ 'Apple', 0.86, 4 ],
+    [ 'Banana', 0.82, 2 ],
+    [ 'Pear', 0.52, 7 ],
+    [ 'Watermelon', 1.74, 2 ],
+    [ 'Kiwi', 0.99, 3 ],
+    [ 'Strawberry', 0.4, 25 ] 
+  ]
+
+*/
+
+// more direct method
 function getData2() {
-  
   const sheet = SpreadsheetApp.getActiveSheet();
   console.log(sheet.getDataRange().getValues());
-  
 }
 
-
-// get sheet by name
+// get Sheet by name
 function getData3() {
-  
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const mySheet1 = ss.getSheetByName("Sheet1");
-  
-  console.log(mySheet1.getDataRange().getValues());
-  
+  const sheet1 = ss.getSheetByName('Sheet1');
+  console.log(sheet1.getDataRange().getValues());
 }
 
-
-// get active data
+// active range
 function getData4() {
-  
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet1 = ss.getSheetByName("Sheet1");
-  
-  const activeRange = sheet1.getActiveRange().getValues();
-  
-  console.log(activeRange);
-  
-  // [[Fruit, Cost], [Apple, 0.86]]
-  
+  const sheet1 = ss.getSheetByName('Sheet1');
+  console.log(sheet1.getActiveRange().getValues());
 }
 
-
-
-// get A1 data
+// get data by A1 notation
 function getData5() {
-  
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet1 = ss.getSheetByName("Sheet1");
+  const sheet1 = ss.getSheetByName('Sheet1');
 
-  const data = sheet1.getRange("A1:C4").getValues();
-  
+  let data = sheet1.getRange('A1:C4').getValues();
   console.log(data);
   
-  //[[Fruit, Cost, Quantity], [Apple, 0.86, 4.0], [Banana, 0.82, 2.0], [Pear, 0.52, 7.0]]
-  
 }
 
-
-// get range of data by coordinates
+// get data by range coordinates
 function getData6() {
-  
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet1 = ss.getSheetByName("Sheet1");
-  
-  const data = sheet1.getRange(1,1,4,1).getValues();
-  
-  console.log(data); // [[Fruit], [Apple], [Banana], [Pear]]
-  
-  const data2 = sheet1.getRange(3,1,4,3).getValues();
-  
-  console.log(data2); //[[Banana, 0.82, 2.0], [Pear, 0.52, 7.0], [Watermelon, 1.74, 2.0], [Kiwi, 0.99, 3.0]]
+  const sheet1 = ss.getSheetByName('Sheet1');
+
+  let data1 = sheet1.getRange(1,1).getValue();
+  console.log(data1);
+
+  let data2 = sheet1.getRange(1,1,4,3).getValues();
+  console.log(data2);
+
+  let data3 = sheet1.getRange(1,1,7,2).getValues();
+  console.log(data3);
 
 }
-
