@@ -2,7 +2,7 @@
 function objectFunction() {
   
   // create with curly brackets
-  const newObj = {};
+  const obj = {};
   
   // objects consist of key/value pairs
   // ordering is not important
@@ -16,13 +16,15 @@ function objectFunction() {
   console.log(employee);
   console.log(typeof employee);
   
-  console.log(employee.name);
-  console.log(employee['name']);
+  // accessing values inside objects
+  console.log(employee.name); // dot notation
+  console.log(employee['age']); // square bracket notation
   console.log(employee.title);
+  console.log(employee.height); // undefined because there is no height property in object
   
   // add item to object
   employee.favoriteFood = 'Fish & Chips';
-  employee['department'] = 'Web Analytics';
+  employee['department'] = 'Marketing';
 
   // or update values
   employee.age = 26;
@@ -30,7 +32,7 @@ function objectFunction() {
   console.log(employee);
   
   // delete an item from object
-  delete employee.age;
+  delete employee.favoriteFood;
   
   console.log(employee);
   
