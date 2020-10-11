@@ -26,11 +26,11 @@ function findFormIDs() {
 }
 
 /*
-1:32:41 PM	Notice	Execution started
-1:32:42 PM	Info	Name: 2120132702
-1:32:42 PM	Info	Do you have prior coding experience? 267233812
-1:32:42 PM	Info	What programming languages do you use? 1860180947
-1:32:42 PM	Notice	Execution completed
+1:32:41 PM  Notice  Execution started
+1:32:42 PM  Info  Name: 2120132702
+1:32:42 PM  Info  Do you have prior coding experience? 267233812
+1:32:42 PM  Info  What programming languages do you use? 1860180947
+1:32:42 PM  Notice  Execution completed
 */
 
 // Project Lesson 4: update the Google Form
@@ -183,55 +183,62 @@ function updateForm_v2() {
   const formCheckboxChoices = form.getItemById('1860180947').asCheckboxItem().getChoices();
   const formCheckboxValues = formCheckboxChoices.map(x => x.getValue());
   //console.log(formCheckboxValues); // [ 'None', 'Apps Script', 'Python', 'VBA', 'R' ]
-  //Logger.log(formCheckboxValues[1]);
-  //Logger.log(formCheckboxValues[1].length);
+  //console.log(formCheckboxValues[1]);
+  //console.log(formCheckboxValues[1].length);
   
   // get list of langs in setup sheet
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const setupSheet = ss.getSheetByName('setup');
   const setupSheetValues = setupSheet.getRange(2,1,setupSheet.getLastRow()-1,1).getValues().flat();
   //console.log(setupSheetValues); // [ 'None', 'Apps Script', 'Python', 'VBA' ]
-  //Logger.log(setupSheetValues[1]);
-  //Logger.log(setupSheetValues[1].length);
+  //console.log(setupSheetValues[1]);
+  //console.log(setupSheetValues[1].length);
 
   // get list of langs submitted via the form
   const responsesSheet = ss.getSheetByName('Form Responses 1');
   const data = responsesSheet.getRange(2,1,responsesSheet.getLastRow()-1,6).getValues();
   const submittedFormValues = data.map(row => row[4]).join().split(',');
   //console.log(submittedFormValues); // [ 'None', 'Apps Script, Python, VBA, R', 'Java' ]
-  //Logger.log(submittedFormValues[1]);
-  //Logger.log(submittedFormValues[1].length);
+  //console.log(submittedFormValues[1]);
+  //console.log(submittedFormValues[1].length);
 
   // consolidate list of langs
   const allLangs = (formCheckboxValues.concat(setupSheetValues)).concat(submittedFormValues); 
-  //Logger.log(allLangs);
+  //console.log(allLangs);
   // [None, Apps Script, Python, VBA, R, None, Apps Script, Python, VBA, None, Apps Script, Python, VBA, R, Java]
 
   // remove leading and trailing spaces from langs
   const trimAllLangs = allLangs.map(item => item.trim());
-  //Logger.log(trimAllLangs);
+  //console.log(trimAllLangs);
 
   // sort list of langs
   trimAllLangs.sort();
-  //Logger.log(trimAllLangs);
+  console.log(trimAllLangs);
 
   // dedup list of langs
   // use let because I'm going to reassign it
   let finalLangList = trimAllLangs.filter((lang,i) => trimAllLangs.indexOf(lang) === i);
-  //Logger.log(finalLangList);
-  //Logger.log(finalLangList[0].length);
-  //Logger.log(finalLangList[1].length);
+  //console.log(finalLangList);
+  //console.log(finalLangList[0]);
+  //console.log(finalLangList[0].length);
+  //console.log(finalLangList.length);
+  //console.log(finalLangList[1].length);
+
+  // remove any blanks
+  finalLangList = finalLangList.filter(item => item.length !== 0);
+  //console.log(finalLangList);
+  //console.log(finalLangList.length);
   
   // move 'None' to front of array
   finalLangList = finalLangList.filter(item => item !== 'None');
   finalLangList.unshift('None');
-  //Logger.log(finalLangList);
-  //Logger.log(finalLangList.length);
+  //console.log(finalLangList);
+  //console.log(finalLangList.length);
 
   // turn into double array notation for Sheets
   const finalDoubleArray = finalLangList.map(lang => [lang]);
-  //Logger.log(finalDoubleArray);
-  //Logger.log(finalDoubleArray.length);
+  //console.log(finalDoubleArray);
+  //console.log(finalDoubleArray.length);
   
   // paste into sheet in setup tab
   setupSheet.getRange("A2:A").clear();
