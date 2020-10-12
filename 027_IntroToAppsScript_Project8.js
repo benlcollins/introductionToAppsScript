@@ -1,4 +1,4 @@
-/**
+su/**
  * 
  * Introduction To Apps Script
  * Project: Coding Questionnaire
@@ -203,8 +203,9 @@ function updateForm_v2() {
   //console.log(submittedFormValues[1].length);
 
   // consolidate list of langs
-  const allLangs = (formCheckboxValues.concat(setupSheetValues)).concat(submittedFormValues); 
-  //console.log(allLangs);
+  const allLangs = [...formCheckboxValues,...setupSheetValues,...submittedFormValues]; // spread operator syntax
+  // const allLangs = (formCheckboxValues.concat(setupSheetValues)).concat(submittedFormValues); 
+  // console.log(allLangs);
   // [None, Apps Script, Python, VBA, R, None, Apps Script, Python, VBA, None, Apps Script, Python, VBA, R, Java]
 
   // remove leading and trailing spaces from langs
