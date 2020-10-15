@@ -12,7 +12,7 @@
 // switch for your own Google Form ID
 // get from URL (X's in following example)
 // https://docs.google.com/forms/d/XXXXXXXXXXXXXXXXXXXXXXXXX/edit
-const FORM_ID = '10tXs2rEodzEDWiaVIGJwHWFqECSriL-7WdxVBTwBlN8';
+const FORM_ID = 'XXXXXXXXXXXXXXXXXXXXXXXXX'; // <-- put your Form ID in here
 
 // Project Lesson 3
 // function to find the Form IDs

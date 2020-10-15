@@ -12,7 +12,7 @@
 // switch for your own Google Form ID
 // get from URL (X's in following example)
 // https://docs.google.com/forms/d/XXXXXXXXXXXXXXXXXXXXXXXXX/edit
-const FORM_ID = '10tXs2rEodzEDWiaVIGJwHWFqECSriL-7WdxVBTwBlN8';
+const FORM_ID = 'XXXXXXXXXXXXXXXXXXXXXXXXX'; // <-- put your Form ID in here
 
 // Project Lesson 3
 // function to find the Form IDs
@@ -40,16 +40,19 @@ function updateForm_v1() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const setupSheet = ss.getSheetByName('setup');
   const langVals = setupSheet.getRange(2,1,setupSheet.getLastRow()-1,1).getValues();
-  console.log(langVals); // [ [ 'None' ], [ 'Apps Script' ], [ 'Python' ] ]
+  console.log(langVals); 
+  // [ [ 'None' ], [ 'Apps Script' ] ]
+
+  const langValsFlat = langVals.map(item => item[0]); // ['None'] => 'None'
+  console.log(langValsFlat);
+  // [ 'None', 'Apps Script' ] // flattened array
 
   // add these languages to the form now
   // get the form
   const form = FormApp.openById(FORM_ID);
-  
-  // get the checkbox question
   const langsCheckboxQuestion = form.getItemById('1860180947').asCheckboxItem();
 
   // populate the Form checkbox question with new language data
-  langsCheckboxQuestion.setChoiceValues(langVals);
+  langsCheckboxQuestion.setChoiceValues(langValsFlat);
 
 }
