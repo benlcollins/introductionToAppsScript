@@ -12,7 +12,7 @@
 // switch for your own Google Form ID
 // get from URL (X's in following example)
 // https://docs.google.com/forms/d/XXXXXXXXXXXXXXXXXXXXXXXXX/edit
-const FORM_ID = '10tXs2rEodzEDWiaVIGJwHWFqECSriL-7WdxVBTwBlN8';
+const FORM_ID = 'XXXXXXXXXXXXXXXXXXXXXXXXX'; // <-- put your Form ID in here 
 
 // Project Lesson 3
 // function to find the Form IDs
@@ -59,38 +59,48 @@ function sendEmail_v1() {
 
   // get spreadsheet
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const responsesSheet = ss.getSheetByName('Form Responses 1');
-
-  // get data
-  const data = responsesSheet.getRange(2,1,responsesSheet.getLastRow()-1,6).getValues();
+  const responseSheet = ss.getSheetByName('Form Responses 1');
+  const data = responseSheet.getDataRange().getValues();
   console.log(data);
 
+  // remove the header row
+  data.shift();
+  console.log(data);
 
   // loop over data
-  data.forEach(function(row,i) {
-    
-    // get email address
-    const email = row[2];
-    console.log(email);
+  data.forEach((row,i) => {
 
-    // check the replied column is blank
+    // identify rows I haven't replied to yet
     if (row[5] === '') {
       
-      // logic for people who reply Yes they do have coding experience
-      if(row[3] === 'Yes') {
-        var body = 'TBC - Yes'; // need to use VAR here because this variable body will be used outside the block scope If {}
-      }
-      // logic for people who replied No to prior experience
-      else {
-        var body = 'TBC - No'; // need to use VAR here because this variable body will be used outside the block scope If {}
-      }
+      // get email address
+      const email = row[2];
 
-      // declare email subject line
+      // write the email
       const subject = 'Thank you for responding to the Apps Script questionnaire!';
+      let body = '';
+
+      // change the body for yes and no
+      // yes answer
+      if(row[3] === 'Yes') {
+        body = 'TBC - Yes answer'; 
+      }
+      // no answer
+      else {
+        body = 'TBC - No answer';
+      } 
 
       // send email
       GmailApp.sendEmail(email,subject,body);
 
+      // mark as sent
+      const d = new Date();
+      responseSheet.getRange(i + 2,6).setValue(d);
+
+    }
+    else {
+      console.log('No email sent for this row');
     }
   });
 }
+
