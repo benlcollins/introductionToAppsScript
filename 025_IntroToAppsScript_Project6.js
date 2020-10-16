@@ -12,7 +12,7 @@
 // switch for your own Google Form ID
 // get from URL (X's in following example)
 // https://docs.google.com/forms/d/XXXXXXXXXXXXXXXXXXXXXXXXX/edit
-const FORM_ID = '10tXs2rEodzEDWiaVIGJwHWFqECSriL-7WdxVBTwBlN8';
+const FORM_ID = 'XXXXXXXXXXXXXXXXXXXXXXXXX'; // <-- put your Form ID in here 
 
 // Project Lesson 3
 // function to find the Form IDs
@@ -40,92 +40,109 @@ function updateForm_v1() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const setupSheet = ss.getSheetByName('setup');
   const langVals = setupSheet.getRange(2,1,setupSheet.getLastRow()-1,1).getValues();
-  console.log(langVals); // [ [ 'None' ], [ 'Apps Script' ], [ 'Python' ] ]
+  console.log(langVals); 
+  // [ [ 'None' ], [ 'Apps Script' ] ]
+
+  const langValsFlat = langVals.map(item => item[0]); // ['None'] => 'None'
+  console.log(langValsFlat);
+  // [ 'None', 'Apps Script' ] // flattened array
 
   // add these languages to the form now
   // get the form
   const form = FormApp.openById(FORM_ID);
-  
-  // get the checkbox question
   const langsCheckboxQuestion = form.getItemById('1860180947').asCheckboxItem();
 
   // populate the Form checkbox question with new language data
-  langsCheckboxQuestion.setChoiceValues(langVals);
+  langsCheckboxQuestion.setChoiceValues(langValsFlat);
 
 }
 
 // Project Lesson 5: Sending emails automatically with Apps Script
+// version 1
 function sendEmail_v1() {
 
   // get spreadsheet
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const responsesSheet = ss.getSheetByName('Form Responses 1');
-
-  // get data
-  const data = responsesSheet.getRange(2,1,responsesSheet.getLastRow()-1,6).getValues();
+  const responseSheet = ss.getSheetByName('Form Responses 1');
+  const data = responseSheet.getDataRange().getValues();
   console.log(data);
 
+  // remove the header row
+  data.shift();
+  console.log(data);
 
   // loop over data
-  data.forEach(function(row,i) {
-    
-    // get email address
-    const email = row[2];
-    console.log(email);
+  data.forEach((row,i) => {
 
-    // check the replied column is blank
+    // identify rows I haven't replied to yet
     if (row[5] === '') {
       
-      // logic for people who reply Yes they do have coding experience
-      if(row[3] === 'Yes') {
-        var body = 'TBC - Yes'; // need to use VAR here because this variable body will be used outside the block scope If {}
-      }
-      // logic for people who replied No to prior experience
-      else {
-        var body = 'TBC - No'; // need to use VAR here because this variable body will be used outside the block scope If {}
-      }
+      // get email address
+      const email = row[2];
 
-      // declare email subject line
+      // write the email
       const subject = 'Thank you for responding to the Apps Script questionnaire!';
+      let body = '';
+
+      // change the body for yes and no
+      // yes answer
+      if(row[3] === 'Yes') {
+        body = 'TBC - Yes answer'; 
+      }
+      // no answer
+      else {
+        body = 'TBC - No answer';
+      } 
 
       // send email
       GmailApp.sendEmail(email,subject,body);
 
+      // mark as sent
+      const d = new Date();
+      responseSheet.getRange(i + 2,6).setValue(d);
+
+    }
+    else {
+      console.log('No email sent for this row');
     }
   });
 }
 
 
-// Project Lesson 6: Sending richer emails automatically with Apps Script
+// Project Lesson 5: Sending enhanced HTML emails automatically with Apps Script
+// version 2
 function sendEmail_v2() {
 
-  // get spreadsheet
+  // get the spreadsheet information
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const responsesSheet = ss.getSheetByName('Form Responses 1');
+  const responseSheet = ss.getSheetByName('Form Responses 1');
+  const data = responseSheet.getDataRange().getValues();
+  //console.log(data);
 
-  // get data
-  const data = responsesSheet.getRange(2,1,responsesSheet.getLastRow()-1,6).getValues();
-  console.log(data);
+  // remove the header
+  data.shift();
+  //console.log(data);
 
+  // loop over the rows
+  data.forEach((row,i) => {
 
-  // loop over data
-  data.forEach(function(row,i) {
-    
-    // get variables
-    const name = row[1];
-    const email = row[2];
-    const answer = row[3];
-    const langs = row[4];
-    const replied = row[5];
-    console.log(email);
+    // identify ones I haven't replied to
+    if (row[5] === '') {
 
-    // check the replied column is blank
-    if (replied === '') {
-      
-      // logic for people who reply Yes they do have coding experience
-      if(answer === 'Yes') {
-        // need to use VAR here because this variable body will be used outside the block scope If {}
-        var body = 'Hi ' + name + `,<br><br>
+      // get the email address
+      const name = row[1];
+      const email = row[2];
+      const answer = row[3]; // yes/no
+      const langs = row[4]; // list of languages
+
+      // write the email
+      const subject = 'Thank you for responding to the Apps Script questionnaire!';
+      let body = '';
+
+      // change the body for yes and no
+      // yes answer
+      if (answer === 'Yes') {
+        body = 'Hi ' + name +`,<br><br>
           Thank you for responding to our 2019 Developer Survey!<br><br>
           Your feedback is greatly appreciated.<br><br>
           You reported experience with the following coding languages:<br><br>
@@ -133,40 +150,42 @@ function sendEmail_v2() {
           Thanks,<br>
           Ben`;
       }
-      // logic for people who replied No to prior experience
+      // no answer
       else {
-        // need to use VAR here because this variable body will be used outside the block scope If {}
-        var body = 'Hi ' + name + `,<br><br>
+        body = 'Hi ' + name +`,<br><br>
           Thank you for responding to our 2019 Developer Survey!<br><br>
           Your feedback is greatly appreciated.<br><br>
-          You reported not having any experience with coding, so here's a resource to get you started:<br><br> 
+          You reported not having any experience with coding, so here's a resource to get started:<br><br>
           <a href="https://www.benlcollins.com/spreadsheets/starting-gas/">Getting started with Apps Script</a><br><br>
           Thanks,<br>
           Ben`;
       }
+      //console.log(email);
+      //console.log(subject);
+      //console.log(body);
 
-      // declare email subject line
-      const subject = 'Thank you for responding to the Apps Script questionnaire!';
-
-      // send email
+      // send the email
       GmailApp.sendEmail(email,subject,'',{htmlBody: body});
 
-      // add date to the replied column
+      // mark as sent
       const d = new Date();
-      responsesSheet.getRange(i+2,6).setValue(d);
+      responseSheet.getRange(i + 2,6).setValue(d);
 
+    }
+    else {
+      console.log('No email sent for this row');
     }
   });
 }
 
-// add menu to update form and send emails
+// add a cutsom menu to our Sheet
 function onOpen() {
   
   const ui = SpreadsheetApp.getUi();
   
-  ui.createMenu("Form Reply Tool")
-    .addItem("Send emails...","sendEmail_v2")
-    .addItem("Update form...","updateForm_v1")
+  ui.createMenu("Questionnaire Menu")
+    .addItem("Update Form","updateForm_v1")
+    .addItem("Send Emails","sendEmail_v2")
     .addToUi();
   
 }
