@@ -109,7 +109,7 @@ function sendEmail_v1() {
 }
 
 
-// Project Lesson 5: Sending enhanced HTML emails automatically with Apps Script
+// Project Lesson 6: Sending enhanced HTML emails automatically with Apps Script
 // version 2
 function sendEmail_v2() {
 
