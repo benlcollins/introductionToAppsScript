@@ -194,76 +194,68 @@ function onOpen() {
 // version 2
 function updateForm_v2() {
 
-  // get list of langs in form question
-  const form = FormApp.openById(FORM_ID);
-  const formCheckboxChoices = form.getItemById('1860180947').asCheckboxItem().getChoices();
-  const formCheckboxValues = formCheckboxChoices.map(x => x.getValue());
-  //console.log(formCheckboxValues); // [ 'None', 'Apps Script', 'Python', 'VBA', 'R' ]
-  //console.log(formCheckboxValues[1]);
-  //console.log(formCheckboxValues[1].length);
-  
-  // get list of langs in setup sheet
+  // get Sheet and Form variables
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const form = FormApp.openById(FORM_ID);
+
+  // get list of languages in setup sheet
   const setupSheet = ss.getSheetByName('setup');
   const setupSheetValues = setupSheet.getRange(2,1,setupSheet.getLastRow()-1,1).getValues().flat();
-  
-  //console.log(setupSheetValues); // [ 'None', 'Apps Script', 'Python', 'VBA' ]
-  //console.log(setupSheetValues[1]);
-  //console.log(setupSheetValues[1].length);
+  //console.log(setupSheetValues); 
+  // [ 'None', 'Apps Script', 'Python', 'VBA' ]
 
-  // get list of langs submitted via the form
+  // get list of languages submitted via the form
   const responsesSheet = ss.getSheetByName('Form Responses 1');
-  const data = responsesSheet.getRange(2,1,responsesSheet.getLastRow()-1,6).getValues();
-  const submittedFormValues = data.map(row => row[4]).join().split(',');
-  //console.log(submittedFormValues); // [ 'None', 'Apps Script, Python, VBA, R', 'Java' ]
-  //console.log(submittedFormValues[1]);
-  //console.log(submittedFormValues[1].length);
+  const data = responsesSheet.getRange(2,5,responsesSheet.getLastRow()-1,1).getValues().flat();
+  const submittedFormValues = data.join().split(',');
+  //console.log(submittedFormValues); 
+  // [ 'None', 'Apps Script, Python, VBA, R', 'Java' ]
 
-  // consolidate list of langs
+  // get list of languages in form question
+  const formCheckboxChoices = form.getItemById('1860180947').asCheckboxItem().getChoices();
+  const formCheckboxValues = formCheckboxChoices.map(x => x.getValue());
+  //console.log(formCheckboxValues); 
+  // [ 'None', 'Apps Script', 'Python', 'VBA', 'R' ]
+
+  // consolidate list of languages
   const allLangs = [...formCheckboxValues,...setupSheetValues,...submittedFormValues];
-  //const allLangs = (formCheckboxValues.concat(setupSheetValues)).concat(submittedFormValues); 
   //console.log(allLangs);
   // [None, Apps Script, Python, VBA, R, None, Apps Script, Python, VBA, None, Apps Script, Python, VBA, R, Java]
 
-  // remove leading and trailing spaces from langs
+  // remove leading and trailing spaces from languages
   const trimAllLangs = allLangs.map(item => item.trim());
   //console.log(trimAllLangs);
 
-  // sort list of langs
+  // sort list of languages
   trimAllLangs.sort();
-  console.log(trimAllLangs);
+  //console.log(trimAllLangs);
 
-  // dedup list of langs
+  // dedup list of languages
   // use let because I'm going to reassign it
   let finalLangList = trimAllLangs.filter((lang,i) => trimAllLangs.indexOf(lang) === i);
-  console.log(finalLangList);
-  console.log(finalLangList.length);
-  console.log(finalLangList[0]);
-  console.log(finalLangList[0].length);
-  //console.log(finalLangList[1].length);
+  //console.log(finalLangList);
+  //console.log(finalLangList.length);
 
   // remove any blanks
   finalLangList = finalLangList.filter(item => item.length !== 0);
-  console.log(finalLangList);
-  console.log(finalLangList.length);
+  //console.log(finalLangList);
+  //console.log(finalLangList.length);
   
   // move 'None' to front of array
   finalLangList = finalLangList.filter(item => item !== 'None');
   finalLangList.unshift('None');
-  console.log(finalLangList);
-  //console.log(finalLangList.length);
+  //console.log(finalLangList);
 
   // turn into double array notation for Sheets
   const finalDoubleArray = finalLangList.map(lang => [lang]);
   //console.log(finalDoubleArray);
-  //console.log(finalDoubleArray.length);
   
   // paste into sheet in setup tab
   setupSheet.getRange("A2:A").clear();
   setupSheet.getRange(2,1,finalLangList.length,1).setValues(finalDoubleArray);
 
   // copy into the Form
-  form.getItemById('1860180947').asCheckboxItem().setChoiceValues(finalLangList); // use the array of strings for the Form, NOT the double array like Sheets
+  form.getItemById('1860180947').asCheckboxItem().setChoiceValues(finalLangList); 
 
 }
 
