@@ -3,7 +3,7 @@
 
 This GitHub folder contains code for the online course: [Introduction To Apps Script](https://courses.benlcollins.com/)
 
-![Introduction To Apps Script]()
+![Introduction To Apps Script](https://github.com/benlcollins/introductionToAppsScript/blob/main/AppsScript_Intro%20copy.jpg)
 
 Go from zero coding knowledge to automating your work with Google Apps Script.
 
