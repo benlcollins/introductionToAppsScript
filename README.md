@@ -18,4 +18,6 @@ This course will set you up to:
 
 Each lesson is taught through bite-sized, action-oriented 5 - 10 minute-long videos, covering practical techniques you can apply to your own business.
 
-This course will teach you the basic foundational techniques in Apps Script, even if you’re brand new to coding. 
+This course will teach you the basic foundational techniques in Apps Script, even if you’re brand new to coding.
+
+Sign up here: [Introduction To Apps Script](https://courses.benlcollins.com/)
