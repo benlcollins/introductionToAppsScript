@@ -1,9 +1,10 @@
 # Introduction To Apps Script
-## A free, introductory course teaching Google Apps Script from scratch
-
-This GitHub folder contains code for the online course: [Introduction To Apps Script](https://courses.benlcollins.com/)
 
 ![Introduction To Apps Script](https://github.com/benlcollins/introductionToAppsScript/blob/main/AppsScript_Intro%20copy.jpg)
+
+## A free, introductory course teaching Google Apps Script from scratch
+
+This GitHub folder contains code for the online course: [Introduction To Apps Script](https://courses.benlcollins.com/p/apps-script-blastoff)
 
 Go from zero coding knowledge to automating your work with Google Apps Script.
 
@@ -20,4 +21,4 @@ Each lesson is taught through bite-sized, action-oriented 5 - 10 minute-long vid
 
 This course will teach you the basic foundational techniques in Apps Script, even if you’re brand new to coding.
 
-Sign up here: [Introduction To Apps Script](https://courses.benlcollins.com/)
+Sign up here: [Introduction To Apps Script](https://courses.benlcollins.com/p/apps-script-blastoff)
