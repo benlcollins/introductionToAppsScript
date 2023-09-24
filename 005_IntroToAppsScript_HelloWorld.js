@@ -1,4 +1,4 @@
-sufunction helloWorld() {
+function helloWorld() {
   
   Logger.log("Hello, World!");
   
